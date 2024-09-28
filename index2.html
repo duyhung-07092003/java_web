@@ -27,21 +27,34 @@
             Tích: 12 * 4 = 48
         </h1>
 
-        <!-- Hiển thị ngày giờ hiện tại tĩnh -->
        <h1 id="currentDateTime"></h1>
 
     <script>
-        // Hàm lấy ngày giờ hiện tại và định dạng thành dd-MM-yyyy
+        // Hàm lấy ngày giờ hiện tại và định dạng thành dd-MM-yyyy HH:mm:ss
         function getCurrentDateTime() {
             const now = new Date();
+            
+            // Lấy ngày, tháng, năm
             const day = String(now.getDate()).padStart(2, '0');
             const month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng trong JS bắt đầu từ 0
             const year = now.getFullYear();
-            return `${day}-${month}-${year}`;
+            
+            // Lấy giờ, phút, giây
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            // Kết hợp định dạng ngày và giờ
+            return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
         }
 
-        // Hiển thị ngày giờ hiện tại vào thẻ h1
-        document.getElementById('currentDateTime').innerHTML = `Ngày giờ hiện tại: ${getCurrentDateTime()}`;
+        // Hàm cập nhật thời gian liên tục
+        function updateDateTime() {
+            document.getElementById('currentDateTime').innerHTML = `Ngày giờ hiện tại: ${getCurrentDateTime()}`;
+        }
+
+        // Cập nhật thời gian mỗi giây
+        setInterval(updateDateTime, 1000);
     </script>
     </body>
 </html>
