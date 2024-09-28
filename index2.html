@@ -28,8 +28,20 @@
         </h1>
 
         <!-- Hiển thị ngày giờ hiện tại tĩnh -->
-        <h1 style="text-align: center; color: gray;">
-            Ngày giờ hiện tại: 28-09-2024
-        </h1>
+       <h1 id="currentDateTime"></h1>
+
+    <script>
+        // Hàm lấy ngày giờ hiện tại và định dạng thành dd-MM-yyyy
+        function getCurrentDateTime() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng trong JS bắt đầu từ 0
+            const year = now.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        // Hiển thị ngày giờ hiện tại vào thẻ h1
+        document.getElementById('currentDateTime').innerHTML = `Ngày giờ hiện tại: ${getCurrentDateTime()}`;
+    </script>
     </body>
 </html>
